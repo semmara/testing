@@ -1,0 +1,31 @@
+$ uname -a
+Linux Ub 3.13.0-55-generic #94-Ubuntu SMP Thu Jun 18 00:27:10 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
+
+$ gcc --version
+gcc (Ubuntu 4.8.4-2ubuntu1~14.04) 4.8.4
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+$ clang --version
+Ubuntu clang version 3.4-1ubuntu3 (tags/RELEASE_34/final) (based on LLVM 3.4)
+Target: x86_64-pc-linux-gnu
+Thread model: posix
+
+
+$ make test1
+for bin in gccprog clangprog clangprog_stackprotector clangprog_fortify; do echo "====="; ./$bin `python -c 'print "A"*40'`; echo $?; done
+=====
+*** stack smashing detected ***: ./gccprog terminated
+Aborted (core dumped)
+134
+=====
+Segmentation fault (core dumped)
+139
+=====
+*** stack smashing detected ***: ./clangprog_stackprotector terminated
+Aborted (core dumped)
+134
+=====
+0
+
