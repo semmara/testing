@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 int inner(char * input) {
 	char buf[8];
 	strcpy(buf, input);
